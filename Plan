@@ -1,0 +1,132 @@
+Plan: MAPPA Travels — Sitio Web Completo
+Context
+Paola es founder de MAPPA Travels, agencia de viajes que diseña experiencias personalizadas principalmente para latinoamericanos viajando a Europa (abierto a cualquier destino). El objetivo es construir un sitio web multi-página profesional, elegante y moderno desde cero, usando los brand assets de Brandmark y el brief del cliente como guía.
+
+Brand Tokens
+Background: #ecede7 (cream)
+Foreground: #036280 (deep teal — primary color)
+Accent 1: #405f7d (slate blue — logo MAPPA lettering)
+Accent 2: #53BED0 (cyan — highlights, buttons)
+Accent 3: #6F8FBA (medium blue)
+Title font: Montserrat 300 (Google Fonts)
+Script font: Great Vibes (closest Google Fonts substitute for Brandmark Script 4)
+WhatsApp: +31634645272 → https://wa.me/31634645272
+Instagram: @mappatravels (placeholder — Paola to update)
+Facebook: /mappatravels (placeholder — Paola to update)
+Logos: brand_assets/logo-primary.svg (dark, on light bg) | brand_assets/logo-inverse.svg (light, on dark bg)
+File Structure
+c:\AI Lab\Sitios Web\MAPPA\
+├── index.html          ← Landing page (Home)
+├── nosotros.html       ← Sobre nosotros
+├── consultoria.html    ← Consultoría/Asesoría
+├── paquetes.html       ← Viajes pre-hechos (Fase 2)
+├── catalogos.html      ← Descarga catálogos (Fase 2)
+├── serve.mjs           (already exists)
+├── screenshot.mjs      (already exists)
+└── brand_assets/
+    ├── logo-primary.svg
+    └── logo-inverse.svg
+All files: standalone HTML, Tailwind CDN, all styles inline, no separate CSS files.
+
+Shared Components (repeated in each file)
+Navigation (top, sticky)
+Left: logo-primary.svg (as <img>)
+Center links: Servicios | Sobre Nosotros
+Right: Button "Agendar Ahora" → WhatsApp link (bg #036280, text white)
+No language switcher (Spanish only)
+Footer (bottom of every page)
+3-column layout on dark bg (#405f7d):
+Col 1: Logo inverse + tagline + nav links
+Col 2: Contáctanos — WhatsApp +31634645272, Instagram, Facebook icons
+Col 3: Image/bg with "Reservar Ahora" CTA button (cyan)
+Floating WhatsApp Button
+Fixed bottom-right, green WhatsApp icon, all pages
+Page Details
+1. index.html — Landing Page
+Hero (100vh):
+
+Full-screen travel photo background (placehold.co 1920x1080, teal-tinted)
+Gradient overlay dark-to-transparent from bottom
+Center: logo + slogan + "Agendar Ahora" CTA
+Scroll indicator arrow
+Section: ¿Qué hacemos? (dark bg #405f7d)
+
+Left: inspirational copy from brief ("En MAPPA diseñamos experiencias de viaje únicas...")
+Right: travel image with color treatment
+CTA: "Conócenos" → nosotros.html
+Section: Nuestros Servicios (cream bg #ecede7)
+
+4-card grid:
+Consultoría/Asesoría → consultoria.html
+Viajes a la medida → paquetes.html
+Paquetes pre-planeados → paquetes.html
+Descarga de materiales → catalogos.html
+Each card: icon + title + short description + link
+Section: Nuestros Valores (white bg)
+
+3-column: Confianza | Personalización | Inmersión Cultural
+Each: icon + title + copy
+Section: Promociones (cyan bg #53BED0)
+
+"Cotiza Gratis" pill + "Reserva y obtén descuento en tu eSIM de viaje" pill
+CTA WhatsApp
+2. nosotros.html — Sobre Nosotros
+Hero: Full-width image + "Sobre Nosotros" heading overlay
+
+Section: Misión / Visión / Valores (3-column or tabbed)
+
+Misión: Crear y diseñar viajes completamente personalizados...
+Visión: placeholder
+Valores: 3 pillars from brief
+Section: Founders — Diseñadores de Experiencias
+
+Grid: founder photo placeholder + bio text card
+"Nuestro equipo está conformado por viajeros expertos..."
+Paola as primary founder (photo placeholder 400x500)
+3. consultoria.html — Consultoría/Asesoría
+Header: Title + description of service
+
+Section: Cómo funciona (5-step process, icon row)
+
+Llena el formulario — cuéntanos qué traes en mente
+Agenda tu cita — agenda una llamada con nuestro equipo
+Itinerario de viaje — basado en tu info, te hacemos un itinerario
+Ajustes y Preparación — personalizamos y preparamos
+Inicio del viaje — ¡listos para viajar!
+CTA Section: Script heading "Haz tu cita con nuestros expertos" + WhatsApp button + Contact button
+
+4. paquetes.html — Viajes Pre-hechos (Fase 2)
+Header: Script heading "Itinerarios multidestino" + subtitle "hechos a la medida"
+
+Grid of travel package cards (3 col):
+
+European packages (primary focus): París + Ámsterdam, Italia completa, Grecia + Turquía, España + Portugal, etc.
+Each card: hero image (placehold.co 600x400) + destination + duration + cities + "desde $X USD" + "Cotizar" CTA (WhatsApp)
+5. catalogos.html — Descarga Catálogos (Fase 2)
+Header: Script heading "Descarga nuestros catálogos"
+
+Two-column layout:
+
+Left: description + "Encuentra nuestros Best-Sellers y diversos paquetes que tenemos en cada destino"
+Right: Form with:
+Dropdown: Paquetes Best-Sellers | Destinos en Europa | Destinos en Asia | Destinos en América | Destinos en Oceanía
+Name field
+Email field
+"Descargar" button (links to placeholder # — Paola adds actual PDF URLs)
+Design System Rules
+Never default Tailwind blue/indigo — always use brand tokens via inline style or Tailwind config
+Shadows: layered, color-tinted with low opacity (e.g., 0 4px 24px rgba(3,98,128,0.15))
+Headings: Montserrat 300, tight tracking
+Script accents: Great Vibes for section titles
+Images: always add gradient overlay + mix-blend-multiply color layer
+Hover states on all interactive elements
+Mobile-first responsive (stack to single col on mobile)
+Depth system: bg #ecede7 → white cards → dark #405f7d sections
+Verification Steps
+node serve.mjs (background) → serves at http://localhost:3000
+node screenshot.mjs http://localhost:3000 — full page
+Screenshot each subpage: /nosotros.html, /consultoria.html, /paquetes.html, /catalogos.html
+Read each screenshot with Read tool, compare against brief wireframes
+Fix layout, spacing, color, and typography issues
+Minimum 2 rounds per page before moving on
+Final mobile viewport check: node screenshot.mjs http://localhost:3000 mobile --width=390 --height=844

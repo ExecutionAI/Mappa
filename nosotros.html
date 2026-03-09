@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre Nosotros — MAPPA Travels</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root { --cream:#ecede7; --teal:#036280; --teal-dark:#024f68; --slate:#405f7d; --cyan:#53BED0; --blue-mid:#6F8FBA; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--cream); font-family:'Montserrat',sans-serif; font-weight:300; color:#2d3748; overflow-x:hidden; }
+    .script { font-family:'Great Vibes',cursive; }
+
+    nav { position:sticky; top:0; z-index:100; background:rgba(236,237,231,0.92); backdrop-filter:blur(12px); border-bottom:1px solid rgba(3,98,128,0.08); }
+    .nav-link { font-size:13px; color:var(--slate); text-decoration:none; letter-spacing:0.5px; font-weight:400; transition:color 0.2s ease; }
+    .nav-link:hover,.nav-link:focus-visible { color:var(--teal); }
+    .nav-link.active { color:var(--teal); font-weight:500; }
+    .nav-cta { background:var(--teal); color:#fff; padding:10px 22px; border-radius:50px; font-size:13px; font-weight:500; text-decoration:none; letter-spacing:0.5px; border:1px solid var(--teal); transition:background 0.2s ease, transform 0.15s ease; }
+    .nav-cta:hover { background:var(--teal-dark); transform:translateY(-1px); }
+    .nav-cta:active { transform:translateY(0); }
+    .nav-cta:focus-visible { outline:2px solid var(--cyan); outline-offset:2px; }
+
+    .reveal { opacity:0; transform:translateY(32px); transition:opacity 0.7s cubic-bezier(0.22,0.61,0.36,1), transform 0.7s cubic-bezier(0.22,0.61,0.36,1); }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    .pillar-card { background:#fff; border-radius:16px; padding:36px 32px; position:relative; overflow:hidden; box-shadow:0 2px 8px rgba(3,98,128,0.04), 0 8px 32px rgba(3,98,128,0.06); transition:transform 0.3s cubic-bezier(0.22,0.61,0.36,1), box-shadow 0.3s ease; }
+    .pillar-card:hover { transform:translateY(-4px); box-shadow:0 4px 16px rgba(3,98,128,0.08), 0 16px 48px rgba(3,98,128,0.1); }
+
+    .pillar-number { font-size:48px; font-weight:700; color:var(--cyan); opacity:0.25; line-height:1; margin-bottom:12px; letter-spacing:-0.03em; }
+
+    .approach-item { display:flex; align-items:center; gap:14px; padding:16px 0; border-bottom:1px solid rgba(3,98,128,0.06); }
+    .approach-item:last-child { border-bottom:none; }
+    .approach-check { width:28px; height:28px; border-radius:50%; background:linear-gradient(135deg,var(--teal),var(--cyan)); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+
+    .promise-item { text-align:center; padding:24px 16px; }
+    .promise-icon { width:48px; height:48px; border-radius:12px; background:rgba(3,98,128,0.06); display:flex; align-items:center; justify-content:center; margin:0 auto 14px; }
+
+    .cta-btn { display:inline-block; background:var(--teal); color:#fff; padding:16px 44px; border-radius:50px; font-size:14px; font-weight:500; text-decoration:none; letter-spacing:0.5px; transition:background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease; box-shadow:0 4px 16px rgba(3,98,128,0.25); }
+    .cta-btn:hover { background:var(--teal-dark); transform:translateY(-2px); box-shadow:0 6px 24px rgba(3,98,128,0.3); }
+    .cta-btn:active { transform:translateY(0); }
+    .cta-btn:focus-visible { outline:2px solid var(--cyan); outline-offset:3px; }
+
+    @media(max-width:768px) {
+      .pillar-card { padding:28px 24px; }
+      .pillars-grid { grid-template-columns:1fr !important; }
+      .approach-grid { grid-template-columns:1fr !important; }
+      .promise-grid { grid-template-columns:1fr !important; }
+      .nav-links-desktop { display:none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div style="max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:68px;">
+    <a href="index.html"><img src="brand_assets/logo-primary.svg" alt="MAPPA Travels" style="height:56px;width:auto;" /></a>
+    <div class="nav-links-desktop" style="display:flex;align-items:center;gap:32px;">
+      <a href="consultoria.html" class="nav-link">Servicios</a>
+      <a href="nosotros.html" class="nav-link active">Sobre Nosotros</a>
+      <a href="cotiza.html" class="nav-cta">Cotiza tu Viaje</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section style="background:linear-gradient(135deg,var(--teal) 0%,#1e3a52 50%,var(--slate) 100%);padding:120px 24px 100px;text-align:center;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 50% 50% at 30% 40%,rgba(83,190,208,0.18),transparent);"></div>
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 40% 40% at 80% 70%,rgba(3,98,128,0.15),transparent);"></div>
+  <div style="position:relative;z-index:1;">
+    <p style="font-size:12px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin:0 0 14px;">Quiénes Somos</p>
+    <img src="brand_assets/logo-inverse.svg" alt="MAPPA Travels" style="height:clamp(120px,22vw,220px);width:auto;margin:0 auto 24px;display:block;" />
+    <p style="font-size:16px;color:rgba(255,255,255,0.7);max-width:520px;margin:0 auto;line-height:1.7;">Viajar bien no es cuestión de suerte, es cuestión de planificación.</p>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section style="max-width:800px;margin:0 auto;padding:80px 24px 60px;">
+  <div class="reveal" style="text-align:center;">
+    <p class="script" style="font-size:28px;color:var(--cyan);margin:0 0 20px;">Nuestra misión</p>
+    <p style="font-size:17px;color:#4a5568;line-height:1.8;margin:0 0 20px;">MAPPA Travels nació con una idea muy simple: <strong style="color:var(--teal);font-weight:600;">ayudar a los viajeros latinoamericanos a descubrir Europa de forma inteligente, optimizada y memorable.</strong></p>
+    <p style="font-size:15px;color:#718096;line-height:1.8;margin:0;">Muchos viajeros llegan a Europa con grandes expectativas, pero también con desafíos: demasiadas opciones, rutas poco claras, recomendaciones contradictorias y presupuestos que se disparan. Nosotros resolvemos ese problema.</p>
+  </div>
+</section>
+
+<!-- DIVIDER -->
+<div style="max-width:800px;margin:0 auto;padding:0 24px;">
+  <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(3,98,128,0.12),transparent);"></div>
+</div>
+
+<!-- PHILOSOPHY -->
+<section style="max-width:1000px;margin:0 auto;padding:64px 24px 60px;">
+  <div class="reveal" style="text-align:center;margin-bottom:48px;">
+    <p class="script" style="font-size:38px;color:var(--teal);margin:0 0 12px;">Nuestra filosofía</p>
+    <p style="font-size:15px;color:#718096;line-height:1.7;">Creemos que un gran viaje tiene tres pilares:</p>
+  </div>
+
+  <div class="pillars-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+
+    <div class="pillar-card reveal">
+      <div class="pillar-number">01</div>
+      <h3 style="font-size:18px;font-weight:600;color:var(--teal);margin-bottom:12px;letter-spacing:-0.3px;">Buena logística</h3>
+      <p style="font-size:13.5px;color:#4a5568;line-height:1.75;">Europa ofrece muchísimo, pero moverse mal puede arruinar la experiencia. Diseñamos rutas inteligentes para que cada traslado tenga sentido.</p>
+    </div>
+
+    <div class="pillar-card reveal">
+      <div class="pillar-number">02</div>
+      <h3 style="font-size:18px;font-weight:600;color:var(--teal);margin-bottom:12px;letter-spacing:-0.3px;">Experiencias auténticas</h3>
+      <p style="font-size:13.5px;color:#4a5568;line-height:1.75;">No se trata solo de ver lugares, sino de vivirlos. Conectamos cada destino con experiencias que lo hacen memorable.</p>
+    </div>
+
+    <div class="pillar-card reveal">
+      <div class="pillar-number">03</div>
+      <h3 style="font-size:18px;font-weight:600;color:var(--teal);margin-bottom:12px;letter-spacing:-0.3px;">Optimización del presupuesto</h3>
+      <p style="font-size:13.5px;color:#4a5568;line-height:1.75;">Un buen viaje no tiene que ser el más caro. Tiene que ser el mejor diseñado.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section style="background:#fff;padding:72px 24px;position:relative;">
+  <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(3,98,128,0.08),transparent);"></div>
+  <div style="max-width:900px;margin:0 auto;">
+    <div class="reveal" style="text-align:center;margin-bottom:48px;">
+      <p class="script" style="font-size:38px;color:var(--teal);margin:0 0 12px;">Nuestro enfoque</p>
+      <p style="font-size:15px;color:#718096;line-height:1.7;">En MAPPA Travels combinamos:</p>
+    </div>
+
+    <div class="approach-grid reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:0 48px;max-width:700px;margin:0 auto;">
+      <div class="approach-item">
+        <div class="approach-check">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <span style="font-size:14px;color:#2d3748;line-height:1.5;">Experiencia real viajando por Europa</span>
+      </div>
+      <div class="approach-item">
+        <div class="approach-check">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <span style="font-size:14px;color:#2d3748;line-height:1.5;">Planeación estratégica</span>
+      </div>
+      <div class="approach-item">
+        <div class="approach-check">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <span style="font-size:14px;color:#2d3748;line-height:1.5;">Herramientas de inteligencia artificial</span>
+      </div>
+      <div class="approach-item">
+        <div class="approach-check">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <span style="font-size:14px;color:#2d3748;line-height:1.5;">Atención personalizada</span>
+      </div>
+    </div>
+
+    <div class="reveal" style="text-align:center;margin-top:32px;">
+      <p style="font-size:14px;color:var(--slate);line-height:1.7;font-style:italic;max-width:560px;margin:0 auto;">Esto nos permite diseñar viajes mucho más optimizados que los itinerarios genéricos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MORE THAN AN ITINERARY -->
+<section style="max-width:900px;margin:0 auto;padding:72px 24px 64px;">
+  <div class="reveal" style="text-align:center;margin-bottom:48px;">
+    <p class="script" style="font-size:38px;color:var(--teal);margin:0 0 12px;">Más que un itinerario</p>
+    <p style="font-size:15px;color:#718096;line-height:1.7;max-width:520px;margin:0 auto;">Nuestro objetivo no es solo entregarte un plan de viaje. Queremos que tengas:</p>
+  </div>
+
+  <div class="promise-grid reveal" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:40px;">
+    <div class="promise-item">
+      <div class="promise-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </div>
+      <h4 style="font-size:15px;font-weight:600;color:var(--teal);margin-bottom:6px;">Claridad total</h4>
+      <p style="font-size:13px;color:#718096;line-height:1.6;">Sobre tu ruta y cada decisión del viaje.</p>
+    </div>
+    <div class="promise-item">
+      <div class="promise-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h4 style="font-size:15px;font-weight:600;color:var(--teal);margin-bottom:6px;">Confianza</h4>
+      <p style="font-size:13px;color:#718096;line-height:1.6;">En cada decisión que tomes durante el viaje.</p>
+    </div>
+    <div class="promise-item">
+      <div class="promise-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+      </div>
+      <h4 style="font-size:15px;font-weight:600;color:var(--teal);margin-bottom:6px;">Un viaje sin estrés</h4>
+      <p style="font-size:13px;color:#718096;line-height:1.6;">Fluido, organizado y listo para disfrutar.</p>
+    </div>
+  </div>
+
+  <div class="reveal" style="text-align:center;">
+    <p style="font-size:17px;color:var(--teal);line-height:1.7;font-weight:500;">Para que puedas concentrarte en lo que realmente importa: <span class="script" style="font-size:28px;color:var(--cyan);">disfrutar Europa.</span></p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:linear-gradient(135deg,var(--teal),var(--slate));padding:80px 24px;text-align:center;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 50% 50%,rgba(83,190,208,0.12),transparent);"></div>
+  <div class="reveal" style="position:relative;z-index:1;">
+    <p class="script" style="font-size:clamp(36px,6vw,52px);color:#fff;margin:0 0 16px;">¿Listo para tu próxima aventura?</p>
+    <p style="font-size:15px;color:rgba(255,255,255,0.7);max-width:480px;margin:0 auto 36px;line-height:1.7;">Cuéntanos sobre tu viaje ideal y diseñamos una experiencia completamente a tu medida.</p>
+    <a href="cotiza.html" class="cta-btn" style="background:#fff;color:var(--teal);box-shadow:0 4px 20px rgba(0,0,0,0.15);">Cotiza tu Viaje →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:var(--slate);padding:48px 24px;text-align:center;">
+  <img src="brand_assets/logo-inverse.svg" alt="MAPPA Travels" style="height:64px;opacity:0.7;margin-bottom:16px;display:block;margin-left:auto;margin-right:auto;" />
+  <p style="font-size:12px;color:rgba(255,255,255,0.3);margin:0;">© 2026 MAPPA Travels. Todos los derechos reservados.</p>
+</footer>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/31634645272" target="_blank" style="position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(37,211,102,0.4);z-index:999;transition:transform 0.2s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.133.557 4.133 1.533 5.867L0 24l6.333-1.533A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.7-.5-5.267-1.4L2.4 21.6l1.067-4.267A9.963 9.963 0 012 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10z"/></svg>
+</a>
+
+<script>
+document.querySelectorAll('.reveal').forEach(el => {
+  new IntersectionObserver(([e]) => { if (e.isIntersecting) { el.classList.add('visible'); } }, { threshold: 0.15 }).observe(el);
+});
+</script>
+</body>
+</html>

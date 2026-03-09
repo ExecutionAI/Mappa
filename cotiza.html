@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cotiza tu viaje — MAPPA Travels</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --cream: #ecede7;
+      --teal: #036280;
+      --slate: #405f7d;
+      --cyan: #53BED0;
+      --blue-mid: #6F8FBA;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      background: var(--cream);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      color: #2d3748;
+    }
+
+    .script { font-family: 'Great Vibes', cursive; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(236,237,231,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(3,98,128,0.08);
+    }
+
+    /* ── HERO ── */
+    .hero-bg {
+      background: linear-gradient(135deg, var(--teal) 0%, var(--slate) 60%, #2a3f55 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 50%, rgba(83,190,208,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 80% at 80% 20%, rgba(3,98,128,0.4) 0%, transparent 60%);
+    }
+    .hero-grain {
+      position: absolute; inset: 0; opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
+    /* ── FORM CARD ── */
+    .form-card {
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px rgba(3,98,128,0.04), 0 16px 48px rgba(3,98,128,0.12), 0 2px 0 rgba(83,190,208,0.2);
+    }
+
+    /* ── PROGRESS ── */
+    .step-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: rgba(3,98,128,0.2);
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .step-dot.active {
+      background: var(--teal);
+      transform: scale(1.3);
+    }
+    .step-dot.done {
+      background: var(--cyan);
+    }
+
+    /* ── STEPS ── */
+    .form-step { display: none; }
+    .form-step.active { display: block; animation: fadeSlide 0.35s ease forwards; }
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── INPUTS ── */
+    .field-label {
+      display: block;
+      font-size: 11px; font-weight: 500; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: 8px;
+    }
+    .field-input {
+      width: 100%; padding: 14px 16px;
+      border: 1.5px solid rgba(3,98,128,0.15);
+      border-radius: 10px;
+      background: #fafafa;
+      font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 14px;
+      color: #2d3748;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .field-input:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(3,98,128,0.08);
+      background: #fff;
+    }
+    textarea.field-input { resize: vertical; min-height: 100px; }
+
+    /* ── CHIPS (multi-select) ── */
+    .chip-group { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      padding: 8px 16px; border-radius: 50px;
+      border: 1.5px solid rgba(3,98,128,0.2);
+      font-size: 13px; font-weight: 400; color: var(--slate);
+      cursor: pointer; user-select: none;
+      transition: all 0.18s ease;
+      background: #fafafa;
+    }
+    .chip:hover { border-color: var(--cyan); color: var(--teal); background: #f0fafc; }
+    .chip.selected {
+      background: var(--teal); border-color: var(--teal);
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(3,98,128,0.25);
+    }
+
+    /* ── SLIDER ── */
+    .budget-slider {
+      -webkit-appearance: none;
+      width: 100%; height: 4px;
+      border-radius: 4px;
+      background: linear-gradient(to right, var(--teal) 0%, var(--teal) var(--pct, 0%), rgba(3,98,128,0.15) var(--pct, 0%), rgba(3,98,128,0.15) 100%);
+      outline: none; cursor: pointer;
+    }
+    .budget-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--teal);
+      border: 3px solid #fff;
+      box-shadow: 0 2px 8px rgba(3,98,128,0.35);
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+    .budget-slider::-webkit-slider-thumb:hover { transform: scale(1.15); }
+    .budget-slider::-moz-range-thumb {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--teal); border: 3px solid #fff;
+      box-shadow: 0 2px 8px rgba(3,98,128,0.35);
+      cursor: pointer;
+    }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--teal); color: #fff;
+      padding: 16px 36px; border-radius: 50px;
+      font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: 14px; letter-spacing: 0.5px;
+      border: none; cursor: pointer;
+      box-shadow: 0 4px 16px rgba(3,98,128,0.3), 0 1px 3px rgba(3,98,128,0.2);
+      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    }
+    .btn-primary:hover {
+      background: #024f68;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(3,98,128,0.4);
+    }
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: transparent; color: var(--slate);
+      padding: 14px 28px; border-radius: 50px;
+      font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 14px;
+      border: 1.5px solid rgba(64,95,125,0.25);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-secondary:hover { border-color: var(--slate); background: rgba(64,95,125,0.05); }
+
+    /* ── LOADING SPINNER ── */
+    .spinner {
+      width: 48px; height: 48px; border-radius: 50%;
+      border: 3px solid rgba(3,98,128,0.15);
+      border-top-color: var(--teal);
+      animation: spin 0.9s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── SUCCESS ── */
+    #success-screen { display: none; }
+    #success-screen.active { display: block; animation: fadeSlide 0.5s ease forwards; }
+
+    .preview-text {
+      font-size: 15px; line-height: 1.85; color: #2d3748;
+      border-left: 3px solid var(--cyan);
+      padding-left: 20px;
+    }
+
+    /* ── FOOTER ── */
+    footer { background: var(--slate); }
+
+    /* ── WHATSAPP FLOAT ── */
+    .wa-btn {
+      position: fixed; bottom: 24px; right: 24px; z-index: 999;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #25D366;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(37,211,102,0.4);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .wa-btn:hover { transform: scale(1.08); box-shadow: 0 6px 20px rgba(37,211,102,0.5); }
+
+    /* ── NUMBER INPUT ── */
+    input[type=number] { -moz-appearance: textfield; }
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; }
+
+    /* ── VALIDATION ── */
+    .field-error { font-size: 12px; color: #e53e3e; margin-top: 5px; display: none; }
+    .field-input.invalid { border-color: #e53e3e; }
+
+    @media (max-width: 640px) {
+      .form-card { border-radius: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAV ══════════════════════════════════════════════════════════ -->
+<nav>
+  <div style="max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:68px;">
+    <a href="index.html">
+      <img src="brand_assets/logo-primary.svg" alt="MAPPA Travels" style="height:56px;width:auto;" />
+    </a>
+    <div style="display:flex;align-items:center;gap:32px;">
+      <a href="consultoria.html" style="font-size:13px;font-weight:400;color:var(--slate);text-decoration:none;letter-spacing:0.5px;transition:color 0.2s;" onmouseover="this.style.color='var(--teal)'" onmouseout="this.style.color='var(--slate)'">Servicios</a>
+      <a href="nosotros.html" style="font-size:13px;font-weight:400;color:var(--slate);text-decoration:none;letter-spacing:0.5px;transition:color 0.2s;" onmouseover="this.style.color='var(--teal)'" onmouseout="this.style.color='var(--slate)'">Sobre Nosotros</a>
+      <a href="cotiza.html" style="background:var(--teal);color:#fff;padding:10px 22px;border-radius:50px;font-size:13px;font-weight:500;text-decoration:none;letter-spacing:0.5px;transition:background 0.2s;" onmouseover="this.style.background='#024f68'" onmouseout="this.style.background='var(--teal)'">Cotiza tu Viaje</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO ══════════════════════════════════════════════════════════ -->
+<section class="hero-bg" style="padding:100px 24px 80px;">
+  <div class="hero-grain"></div>
+  <div style="position:relative;z-index:1;max-width:700px;margin:0 auto;text-align:center;">
+    <p style="font-size:12px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.6);margin:0 0 16px;">Tu próxima aventura comienza aquí</p>
+    <h1 class="script" style="font-size:clamp(52px,8vw,80px);color:#fff;margin:0 0 8px;line-height:1.1;">Cotiza tu Viaje</h1>
+    <p style="font-size:clamp(13px,2vw,16px);font-weight:300;color:rgba(255,255,255,0.75);margin:0;letter-spacing:0.3px;line-height:1.6;">Cuéntanos de tus sueños de viaje. En 2 minutos diseñamos una primera visión de lo que podría ser tu aventura — completamente personalizada.</p>
+  </div>
+</section>
+
+<!-- ══ FORM SECTION ════════════════════════════════════════════════== -->
+<section style="padding:0 24px 80px;margin-top:-40px;position:relative;z-index:2;">
+  <div style="max-width:720px;margin:0 auto;">
+
+    <!-- Step accent -->
+    <p class="script" style="text-align:center;font-size:26px;color:var(--teal);opacity:0.35;margin:0 0 4px;line-height:1;">Diseñado para ti</p>
+
+    <!-- Progress -->
+    <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:12px;" id="progress-dots">
+      <div class="step-dot active" id="dot-1"></div>
+      <div style="width:32px;height:1.5px;background:rgba(3,98,128,0.15);"></div>
+      <div class="step-dot" id="dot-2"></div>
+      <div style="width:32px;height:1.5px;background:rgba(3,98,128,0.15);"></div>
+      <div class="step-dot" id="dot-3"></div>
+    </div>
+    <p style="text-align:center;font-size:11px;font-weight:500;letter-spacing:2px;color:var(--teal);margin-bottom:32px;text-transform:uppercase;" id="step-label">Paso 1 de 3 — Tu Viaje</p>
+
+    <!-- FORM CARD -->
+    <div class="form-card" style="padding:clamp(32px,6vw,56px);">
+
+      <!-- ── STEP 1: Tu Viaje ── -->
+      <div class="form-step active" id="step-1">
+        <h2 style="font-size:22px;font-weight:300;color:var(--teal);margin:0 0 6px;letter-spacing:-0.3px;">Cuéntanos de tu viaje</h2>
+        <p style="font-size:13px;color:#718096;margin:0 0 36px;line-height:1.6;">Los detalles básicos que necesitamos para empezar a diseñar tu experiencia.</p>
+
+        <!-- Q1: Nombre -->
+        <div style="margin-bottom:24px;">
+          <label class="field-label" for="nombre">¿Cuál es tu nombre?</label>
+          <input class="field-input" type="text" id="nombre" placeholder="Tu nombre completo" autocomplete="given-name" />
+          <p class="field-error" id="err-nombre">Por favor ingresa tu nombre.</p>
+        </div>
+
+        <!-- Q2: Email -->
+        <div style="margin-bottom:24px;">
+          <label class="field-label" for="email">Tu correo electrónico</label>
+          <input class="field-input" type="email" id="email" placeholder="correo@ejemplo.com" autocomplete="email" />
+          <p class="field-error" id="err-email">Por favor ingresa un correo válido.</p>
+          <p style="font-size:11px;color:#a0aec0;margin-top:6px;">Aquí recibirás tu plan de viaje personalizado ✈️</p>
+        </div>
+
+        <!-- Q3: Personas -->
+        <div style="margin-bottom:24px;">
+          <label class="field-label">¿Cuántas personas viajan?</label>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div>
+              <p style="font-size:12px;color:#718096;margin:0 0 6px;font-weight:400;">Adultos</p>
+              <input class="field-input" type="number" id="adultos" min="1" max="30" value="2" placeholder="2" />
+            </div>
+            <div>
+              <p style="font-size:12px;color:#718096;margin:0 0 6px;font-weight:400;">Menores (0–17 años)</p>
+              <input class="field-input" type="number" id="menores" min="0" max="20" value="0" placeholder="0" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Q4: Destinos -->
+        <div style="margin-bottom:32px;">
+          <label class="field-label">¿A qué destinos te gustaría viajar?</label>
+          <div class="chip-group" id="destino-chips" style="margin-bottom:12px;">
+            <div class="chip" data-val="Europa">🌍 Europa</div>
+            <div class="chip" data-val="Asia">🏯 Asia</div>
+            <div class="chip" data-val="América">🗽 América</div>
+            <div class="chip" data-val="Oceanía">🦘 Oceanía</div>
+            <div class="chip" data-val="Sorpréndeme">✨ Sorpréndeme</div>
+          </div>
+          <input class="field-input" type="text" id="destino-texto" placeholder="O escribe destinos específicos: París, Japón, Grecia..." />
+          <p class="field-error" id="err-destinos">Por favor selecciona o escribe un destino.</p>
+        </div>
+
+        <div style="display:flex;justify-content:flex-end;">
+          <button class="btn-primary" onclick="goStep(2)">
+            Continuar
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- ── STEP 2: Preferencias ── -->
+      <div class="form-step" id="step-2">
+        <h2 style="font-size:22px;font-weight:300;color:var(--teal);margin:0 0 6px;letter-spacing:-0.3px;">Tus preferencias de viaje</h2>
+        <p style="font-size:13px;color:#718096;margin:0 0 36px;line-height:1.6;">Esto nos permite diseñar una experiencia que sea verdaderamente tuya.</p>
+
+        <!-- Q5: Fechas -->
+        <div style="margin-bottom:24px;">
+          <label class="field-label" for="fechas">¿Cuándo quieres viajar?</label>
+          <input class="field-input" type="text" id="fechas" placeholder="Ej: Julio 2026, 3 semanas · o: 15 ago – 5 sep 2026" />
+          <p style="font-size:11px;color:#a0aec0;margin-top:6px;">Pueden ser fechas exactas o un rango aproximado. También "Flexible".</p>
+        </div>
+
+        <!-- Q6: Presupuesto (slider) -->
+        <div style="margin-bottom:32px;">
+          <label class="field-label">Presupuesto por persona (incluyendo vuelos)</label>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+            <span style="font-size:12px;color:#a0aec0;">$20,000 MXN</span>
+            <div style="text-align:center;">
+              <span style="font-size:22px;font-weight:500;color:var(--teal);" id="budget-display">$60,000</span>
+              <span style="font-size:12px;color:#a0aec0;display:block;margin-top:-2px;">MXN / persona</span>
+            </div>
+            <span style="font-size:12px;color:#a0aec0;">$200,000 MXN</span>
+          </div>
+          <input
+            class="budget-slider"
+            type="range"
+            id="presupuesto"
+            min="20000"
+            max="200000"
+            step="5000"
+            value="60000"
+            oninput="updateBudget(this)"
+          />
+        </div>
+
+        <!-- Q7: Estilo -->
+        <div style="margin-bottom:24px;">
+          <label class="field-label">¿Cómo te gusta viajar? <span style="font-weight:300;text-transform:none;letter-spacing:0;">(selecciona todo lo que aplique)</span></label>
+          <div class="chip-group" id="estilo-chips">
+            <div class="chip" data-val="Aventura">🧗 Aventura</div>
+            <div class="chip" data-val="Gastronomía">🍷 Gastronomía</div>
+            <div class="chip" data-val="Cultura & Arte">🏛️ Cultura & Arte</div>
+            <div class="chip" data-val="Relax & Playa">🏖️ Relax & Playa</div>
+            <div class="chip" data-val="Lujo">💎 Lujo</div>
+            <div class="chip" data-val="Naturaleza">🌿 Naturaleza</div>
+            <div class="chip" data-val="Compras">🛍️ Compras</div>
+            <div class="chip" data-val="Noche & Vida social">🎶 Noche & Vida social</div>
+          </div>
+          <p class="field-error" id="err-estilo">Por favor selecciona al menos un estilo de viaje.</p>
+        </div>
+
+        <!-- Q8: Imprescindibles -->
+        <div style="margin-bottom:24px;">
+          <label class="field-label" for="imprescindibles">¿Qué experiencias son imprescindibles para ti?</label>
+          <textarea class="field-input" id="imprescindibles" placeholder="Ej: quiero ver la aurora boreal, comer en un restaurante con estrella Michelin, recorrer los canales de Venecia en góndola..." maxlength="500"></textarea>
+          <p style="font-size:11px;color:#a0aec0;margin-top:5px;text-align:right;"><span id="imp-count">0</span>/500</p>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+          <button class="btn-secondary" onclick="goStep(1)">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Atrás
+          </button>
+          <button class="btn-primary" onclick="goStep(3)">
+            Continuar
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- ── STEP 3: Últimos detalles ── -->
+      <div class="form-step" id="step-3">
+        <h2 style="font-size:22px;font-weight:300;color:var(--teal);margin:0 0 6px;letter-spacing:-0.3px;">Últimos detalles</h2>
+        <p style="font-size:13px;color:#718096;margin:0 0 36px;line-height:1.6;">Casi listo. Esto nos ayuda a personalizar aún más tu experiencia.</p>
+
+        <!-- Q9: Evitar -->
+        <div style="margin-bottom:24px;">
+          <label class="field-label" for="evitar">¿Hay algo que prefieras evitar?</label>
+          <textarea class="field-input" id="evitar" placeholder="Ej: museos, madrugones, deportes extremos, comida muy picante, destinos muy turísticos..." maxlength="500"></textarea>
+          <p style="font-size:11px;color:#a0aec0;margin-top:5px;text-align:right;"><span id="evi-count">0</span>/500</p>
+        </div>
+
+        <!-- Q10: Ocasión especial -->
+        <div style="margin-bottom:40px;">
+          <label class="field-label" for="especial">¿Hay alguna ocasión especial o necesidad que considerar?</label>
+          <textarea class="field-input" id="especial" placeholder="Ej: luna de miel, cumpleaños 40, viaje con adultos mayores, necesidad de silla de ruedas, celebración de aniversario..." maxlength="300" style="min-height:80px;"></textarea>
+          <p style="font-size:11px;color:#a0aec0;margin-top:5px;text-align:right;"><span id="esp-count">0</span>/300</p>
+        </div>
+
+        <!-- Summary teaser -->
+        <div style="background:var(--cream);border-radius:12px;padding:20px 24px;margin-bottom:32px;">
+          <p style="font-size:12px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:var(--teal);margin:0 0 12px;">Resumen de tu solicitud</p>
+          <div id="summary-content" style="font-size:13px;color:#4a5568;line-height:1.8;"></div>
+        </div>
+
+        <!-- Submit error -->
+        <div id="submit-error" style="display:none;background:#fff5f5;border:1px solid #fed7d7;border-radius:8px;padding:14px 16px;margin-bottom:20px;">
+          <p style="font-size:13px;color:#e53e3e;margin:0;" id="submit-error-text">Error al enviar. Inténtalo de nuevo.</p>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+          <button class="btn-secondary" onclick="goStep(2)">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Atrás
+          </button>
+          <button class="btn-primary" id="submit-btn" onclick="submitForm()">
+            <span id="submit-text">Enviar mi solicitud</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" id="submit-icon"><path d="M2 8l10.5-5L8 14V8.5L2 8z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- ── LOADING ── -->
+      <div id="loading-screen" style="display:none;text-align:center;padding:60px 20px;">
+        <div class="spinner" style="margin:0 auto 24px;"></div>
+        <p style="font-size:15px;font-weight:300;color:var(--slate);margin:0 0 8px;">Diseñando tu aventura...</p>
+        <p style="font-size:12px;color:#a0aec0;margin:0;">Nuestra IA está analizando tus preferencias</p>
+      </div>
+
+    </div><!-- /form-card -->
+
+    <!-- ── SUCCESS ── -->
+    <div id="success-screen" style="margin-top:24px;">
+      <div class="form-card" style="padding:clamp(32px,6vw,56px);text-align:center;">
+        <div style="width:64px;height:64px;background:rgba(83,190,208,0.12);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M5 14l7 7 11-12" stroke="#036280" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h2 style="font-size:clamp(22px,4vw,30px);font-weight:300;color:var(--teal);margin:0 0 8px;">¡Tu aventura está tomando forma!</h2>
+        <p style="font-size:14px;color:#718096;margin:0 0 40px;line-height:1.7;">Hemos enviado una vista previa personalizada a tu correo. Mientras tanto, aquí tienes una probada:</p>
+
+        <!-- AI Preview -->
+        <div style="text-align:left;background:var(--cream);border-radius:12px;padding:32px;margin-bottom:40px;">
+          <p class="script" style="font-size:28px;color:var(--teal);margin:0 0 16px;">Una probada de tu viaje...</p>
+          <p class="preview-text" id="ai-preview-text"></p>
+        </div>
+
+        <p style="font-size:14px;color:#718096;margin:0 0 24px;line-height:1.7;">Nuestro equipo revisará tu solicitud y se pondrá en contacto contigo pronto. ¿Tienes dudas o quieres hablar ahora?</p>
+
+        <a href="https://wa.me/31634645272" target="_blank" class="btn-primary" style="text-decoration:none;display:inline-flex;margin-bottom:16px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.133.557 4.133 1.533 5.867L0 24l6.333-1.533A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.7-.5-5.267-1.4L2.4 21.6l1.067-4.267A9.963 9.963 0 012 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10z"/></svg>
+          Hablar con nuestro equipo
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ FOOTER ════════════════════════════════════════════════════════ -->
+<footer style="padding:60px 24px 40px;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:48px;margin-bottom:48px;">
+      <div>
+        <img src="brand_assets/logo-inverse.svg" alt="MAPPA Travels" style="height:64px;width:auto;margin-bottom:20px;opacity:0.9;" />
+        <p style="font-size:13px;color:rgba(255,255,255,0.55);line-height:1.7;margin:0 0 20px;">Diseñamos experiencias de viaje únicas para quienes buscan más que un destino.</p>
+        <div style="display:flex;gap:12px;">
+          <a href="index.html" style="font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Inicio</a>
+          <span style="color:rgba(255,255,255,0.2);">·</span>
+          <a href="nosotros.html" style="font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Nosotros</a>
+          <span style="color:rgba(255,255,255,0.2);">·</span>
+          <a href="consultoria.html" style="font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Servicios</a>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:12px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin:0 0 16px;">Contáctanos</p>
+        <a href="https://wa.me/31634645272" target="_blank" style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:10px;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.7)'">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.133.557 4.133 1.533 5.867L0 24l6.333-1.533A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.7-.5-5.267-1.4L2.4 21.6l1.067-4.267A9.963 9.963 0 012 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10z"/></svg>
+          +31 634 645 272
+        </a>
+        <a href="#" style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.7);text-decoration:none;margin-bottom:10px;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.7)'">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          @mappatravels
+        </a>
+      </div>
+      <div style="position:relative;overflow:hidden;border-radius:12px;min-height:160px;">
+        <img src="https://placehold.co/400x200/036280/FFFFFF?text=Viaja+con+MAPPA" alt="Viaja con MAPPA" style="width:100%;height:100%;object-fit:cover;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(3,98,128,0.7), transparent);display:flex;flex-direction:column;justify-content:flex-end;padding:20px;">
+          <a href="cotiza.html" style="display:inline-block;background:var(--cyan);color:#fff;padding:10px 22px;border-radius:50px;font-size:13px;font-weight:500;text-decoration:none;text-align:center;transition:background 0.2s;" onmouseover="this.style.background='#3DAFC0'" onmouseout="this.style.background='var(--cyan)'">Reservar Ahora</a>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:24px;text-align:center;">
+      <p style="font-size:12px;color:rgba(255,255,255,0.3);margin:0;">© 2026 MAPPA Travels. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ WHATSAPP FLOAT ═══════════════════════════════════════════════ -->
+<a href="https://wa.me/31634645272" target="_blank" class="wa-btn" aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.133.557 4.133 1.533 5.867L0 24l6.333-1.533A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.7-.5-5.267-1.4L2.4 21.6l1.067-4.267A9.963 9.963 0 012 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10z"/></svg>
+</a>
+
+<!-- ══ SCRIPTS ════════════════════════════════════════════════════════ -->
+<script>
+  const API = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+    ? 'http://localhost:3001'
+    : 'https://mappa-api.onrender.com';
+
+  // ── Step navigation ──────────────────────────────────────────────
+  let currentStep = 1;
+
+  function goStep(n) {
+    if (n > currentStep && !validateStep(currentStep)) return;
+
+    document.getElementById(`step-${currentStep}`)?.classList.remove('active');
+    document.getElementById(`step-${n}`)?.classList.add('active');
+
+    // Update dots
+    for (let i = 1; i <= 3; i++) {
+      const dot = document.getElementById(`dot-${i}`);
+      dot.classList.remove('active', 'done');
+      if (i < n) dot.classList.add('done');
+      else if (i === n) dot.classList.add('active');
+    }
+
+    const labels = ['', 'Paso 1 de 3 — Tu Viaje', 'Paso 2 de 3 — Preferencias', 'Paso 3 de 3 — Últimos Detalles'];
+    document.getElementById('step-label').textContent = labels[n];
+
+    currentStep = n;
+
+    if (n === 3) buildSummary();
+
+    window.scrollTo({ top: document.querySelector('.form-card').offsetTop - 100, behavior: 'smooth' });
+  }
+
+  // ── Validation ───────────────────────────────────────────────────
+  function validateStep(step) {
+    let ok = true;
+
+    if (step === 1) {
+      const nombre = document.getElementById('nombre').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const destinoChips = getSelectedChips('destino-chips');
+      const destinoText = document.getElementById('destino-texto').value.trim();
+
+      showErr('err-nombre', !nombre);
+      toggleInvalid('nombre', !nombre);
+      if (!nombre) ok = false;
+
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      showErr('err-email', !emailOk);
+      toggleInvalid('email', !emailOk);
+      if (!emailOk) ok = false;
+
+      const hasDestino = destinoChips.length > 0 || destinoText.length > 0;
+      showErr('err-destinos', !hasDestino);
+      if (!hasDestino) ok = false;
+    }
+
+    if (step === 2) {
+      const estilo = getSelectedChips('estilo-chips');
+      showErr('err-estilo', estilo.length === 0);
+      if (estilo.length === 0) ok = false;
+    }
+
+    return ok;
+  }
+
+  function showErr(id, show) {
+    const el = document.getElementById(id);
+    if (el) el.style.display = show ? 'block' : 'none';
+  }
+
+  function toggleInvalid(id, invalid) {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('invalid', invalid);
+  }
+
+  // ── Chips ────────────────────────────────────────────────────────
+  document.querySelectorAll('#destino-chips .chip, #estilo-chips .chip').forEach(chip => {
+    chip.addEventListener('click', () => chip.classList.toggle('selected'));
+  });
+
+  function getSelectedChips(groupId) {
+    return Array.from(document.querySelectorAll(`#${groupId} .chip.selected`))
+      .map(c => c.dataset.val);
+  }
+
+  // ── Budget slider ────────────────────────────────────────────────
+  function updateBudget(input) {
+    const min = +input.min, max = +input.max, val = +input.value;
+    const pct = ((val - min) / (max - min)) * 100;
+    input.style.setProperty('--pct', `${pct}%`);
+    document.getElementById('budget-display').textContent = `$${val.toLocaleString('es-MX')}`;
+  }
+
+  // Init slider
+  (function() {
+    const slider = document.getElementById('presupuesto');
+    updateBudget(slider);
+  })();
+
+  // ── Char counters ────────────────────────────────────────────────
+  ['imprescindibles', 'evitar', 'especial'].forEach(id => {
+    const map = { imprescindibles: 'imp-count', evitar: 'evi-count', especial: 'esp-count' };
+    document.getElementById(id)?.addEventListener('input', function() {
+      document.getElementById(map[id]).textContent = this.value.length;
+    });
+  });
+
+  // ── Summary ──────────────────────────────────────────────────────
+  function buildSummary() {
+    const nombre = document.getElementById('nombre').value;
+    const adultos = document.getElementById('adultos').value || '2';
+    const menores = document.getElementById('menores').value || '0';
+    const destinoChips = getSelectedChips('destino-chips');
+    const destinoText = document.getElementById('destino-texto').value;
+    const destinos = [...destinoChips, destinoText].filter(Boolean).join(', ');
+    const presupuesto = (+document.getElementById('presupuesto').value).toLocaleString('es-MX');
+    const estilo = getSelectedChips('estilo-chips').join(', ');
+
+    const lines = [
+      `<strong style="color:var(--teal)">${nombre}</strong>`,
+      `👥 ${adultos} adulto${adultos != 1 ? 's' : ''}${menores > 0 ? ` + ${menores} menor${menores != 1 ? 'es' : ''}` : ''}`,
+      `🌍 ${destinos || '—'}`,
+      `💰 $${presupuesto} MXN / persona`,
+      `✈️ ${estilo || '—'}`,
+    ];
+    document.getElementById('summary-content').innerHTML = lines.join('<br>');
+  }
+
+  // ── Submit ───────────────────────────────────────────────────────
+  async function submitForm() {
+    if (!validateStep(3)) return;
+
+    const formCard = document.querySelector('.form-card');
+    const loadingScreen = document.getElementById('loading-screen');
+
+    // Hide all steps, show loading
+    document.getElementById('step-3').classList.remove('active');
+    document.getElementById('progress-dots').style.display = 'none';
+    document.getElementById('step-label').style.display = 'none';
+    loadingScreen.style.display = 'block';
+
+    const payload = {
+      nombre: document.getElementById('nombre').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      adultos: document.getElementById('adultos').value || '2',
+      menores: document.getElementById('menores').value || '0',
+      destinos: [...getSelectedChips('destino-chips'), document.getElementById('destino-texto').value.trim()].filter(Boolean).join(', '),
+      fechas: document.getElementById('fechas').value.trim(),
+      presupuesto: document.getElementById('presupuesto').value,
+      estilo: getSelectedChips('estilo-chips').join(', '),
+      imprescindibles: document.getElementById('imprescindibles').value.trim(),
+      evitar: document.getElementById('evitar').value.trim(),
+      especial: document.getElementById('especial').value.trim(),
+    };
+
+    try {
+      const res = await fetch(`${API}/api/submit`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) throw new Error(data.error || 'Error desconocido');
+
+      // Hide form card, show success
+      formCard.style.display = 'none';
+      const successScreen = document.getElementById('success-screen');
+      successScreen.classList.add('active');
+
+      // Show first 2 paragraphs of AI preview inline
+      const preview = data.preview || '';
+      const paragraphs = preview.split(/\n+/).filter(p => p.trim()).slice(0, 2).join('\n\n');
+      document.getElementById('ai-preview-text').textContent = paragraphs;
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    } catch (err) {
+      // Restore form
+      loadingScreen.style.display = 'none';
+      document.getElementById('step-3').classList.add('active');
+      document.getElementById('progress-dots').style.display = 'flex';
+      document.getElementById('step-label').style.display = 'block';
+
+      const errBox = document.getElementById('submit-error');
+      document.getElementById('submit-error-text').textContent = err.message || 'Error al enviar. Inténtalo de nuevo.';
+      errBox.style.display = 'block';
+    }
+  }
+</script>
+
+</body>
+</html>

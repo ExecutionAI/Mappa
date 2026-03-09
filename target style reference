@@ -1,0 +1,323 @@
+element.style {
+    width: 980px;
+    height: 788px;
+    object-fit: cover;
+    object-position: 50% 50%;
+}
+.MW5IWV .dLPlxY img {
+    height: 100%;
+    width: 100%;
+}
+.MW5IWV .dLPlxY img {
+    height: 100%;
+    width: 100%;
+}
+.MW5IWV .dLPlxY img {
+    height: 100%;
+    width: 100%;
+}
+.jhxvbR img {
+    max-width: var(--wix-img-max-width, 100%);
+}
+.jhxvbR img {
+    max-width: var(--wix-img-max-width, 100%);
+}
+.jhxvbR img {
+    max-width: var(--wix-img-max-width, 100%);
+}
+.jhxvbR img {
+    max-width: var(--wix-img-max-width, 100%);
+}
+.jhxvbR img {
+    max-width: var(--wix-img-max-width, 100%);
+}
+.jhxvbR img {
+    max-width: var(--wix-img-max-width, 100%);
+}
+div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, nav, button, section, header, footer, title {
+    vertical-align: baseline;
+    background: 0 0;
+    border: 0;
+    outline: 0;
+    margin: 0;
+    padding: 0;
+}
+img[Attributes Style] {
+    width: 980px;
+    aspect-ratio: auto 980 / 709;
+    height: 709px;
+    aspect-ratio: auto 980 / 709;
+}
+user agent stylesheet
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+.MW5IWV {
+    height: 100%;
+    left: 0;
+    -webkit-mask-image: var(--mask-image, none);
+    mask-image: var(--mask-image, none);
+    -webkit-mask-position: var(--mask-position, 0);
+    mask-position: var(--mask-position, 0);
+    -webkit-mask-repeat: var(--mask-repeat, no-repeat);
+    mask-repeat: var(--mask-repeat, no-repeat);
+    -webkit-mask-size: var(--mask-size, 100%);
+    mask-size: var(--mask-size, 100%);
+    overflow: hidden;
+    pointer-events: var(--fill-layer-background-media-pointer-events);
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.MW5IWV {
+    height: 100%;
+    left: 0;
+    -webkit-mask-image: var(--mask-image, none);
+    mask-image: var(--mask-image, none);
+    -webkit-mask-position: var(--mask-position, 0);
+    mask-position: var(--mask-position, 0);
+    -webkit-mask-repeat: var(--mask-repeat, no-repeat);
+    mask-repeat: var(--mask-repeat, no-repeat);
+    -webkit-mask-size: var(--mask-size, 100%);
+    mask-size: var(--mask-size, 100%);
+    overflow: hidden;
+    pointer-events: var(--fill-layer-background-media-pointer-events);
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.MW5IWV {
+    left: 0;
+    -webkit-mask-image: var(--mask-image, none);
+    mask-image: var(--mask-image, none);
+    -webkit-mask-position: var(--mask-position, 0);
+    mask-position: var(--mask-position, 0);
+    -webkit-mask-repeat: var(--mask-repeat, no-repeat);
+    mask-repeat: var(--mask-repeat, no-repeat);
+    -webkit-mask-size: var(--mask-size, 100%);
+    mask-size: var(--mask-size, 100%);
+    overflow: hidden;
+    pointer-events: var(--fill-layer-background-media-pointer-events);
+    position: absolute;
+    top: 0;
+}
+style attribute {
+    --motion-comp-height: 709px;
+}
+#comp-mfwf5edy5 {
+    --fill-layer-image-opacity: 0.77;
+    --bg-overlay-color: rgb(0, 0, 0);
+    --bg-gradient: none;
+    width: 100%;
+    --column-width: 980px;
+    --column-flex: 980;
+}
+:host(:not(.device-mobile-optimized)) .V5AUxf>*, body:not(.device-mobile-optimized) .V5AUxf>* {
+    direction: ltr;
+    flex: var(--column-flex) 1 0%;
+    left: 0;
+    margin-bottom: var(--padding);
+    margin-top: var(--padding);
+    min-width: 0;
+    position: relative;
+    top: 0;
+}
+:host(:not(.device-mobile-optimized)) .V5AUxf>*, body:not(.device-mobile-optimized) .V5AUxf>* {
+    direction: ltr;
+    flex: var(--column-flex) 1 0%;
+    left: 0;
+    margin-bottom: var(--padding);
+    margin-top: var(--padding);
+    min-width: 0;
+    position: relative;
+    top: 0;
+}
+:host(:not(.device-mobile-optimized)) .V5AUxf, body:not(.device-mobile-optimized) .V5AUxf {
+    -moz-column-gap: var(--margin);
+    column-gap: var(--margin);
+    direction: var(--direction);
+    display: flex;
+    margin: 0 auto;
+    position: relative;
+    width: calc(100% - var(--padding) * 2);
+}
+:host(:not(.device-mobile-optimized)) .V5AUxf, body:not(.device-mobile-optimized) .V5AUxf {
+    -moz-column-gap: var(--margin);
+    column-gap: var(--margin);
+    direction: var(--direction);
+    display: flex;
+    margin: 0 auto;
+    position: relative;
+    width: calc(100% - var(--padding) * 2);
+}
+#comp-mfwf5edx4 {
+    --bg-overlay-color: transparent;
+    --bg-gradient: none;
+    --padding: 0px;
+    --margin: 0px;
+    min-width: 980px;
+    --firstChildMarginTop: -1px;
+    --lastChildMarginBottom: -1px;
+    --direction: ltr;
+}
+[data-mesh-id$=-gridContainer]>*, [data-mesh-id$=-rotated-wrapper]>*, [data-mesh-id$=inlineContent]>:not([data-mesh-id$=-gridContainer]) {
+    pointer-events: auto;
+}
+[data-mesh-id$=inlineContent], [data-mesh-id$=centeredContent], [data-mesh-id$=form] {
+    pointer-events: none;
+    position: relative;
+}
+#comp-mfwf5edw {
+    --bg-overlay-color: transparent;
+    --bg-gradient: none;
+    min-width: 980px;
+}
+.SPY_vo {
+    pointer-events: none;
+}
+#SITE_PAGES {
+    --transition-duration: 700ms;
+}
+#PAGES_CONTAINER {
+    --pinned-layer-in-container: 51;
+    --above-all-in-container: 49;
+}
+#masterPage:not(.landingPage) {
+    --top-offset: 0px;
+    --header-height: 70px;
+}
+#masterPage {
+    --pinned-layers-in-page: 0;
+}
+style attribute {
+    --scrollbar-width: 15px;
+}
+body {
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+body {
+    --scrollbar-width: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+}
+:root, :host, .spxThemeOverride, .max-width-container, #root {
+    --color_0: 255, 255, 255;
+    --color_1: 0, 0, 0;
+    --color_2: 170, 188, 191;
+    --color_3: 25, 25, 25;
+    --color_4: 241, 241, 241;
+    --color_5: 225, 239, 242;
+    --color_6: 255, 255, 255;
+    --color_7: 191, 191, 191;
+    --color_8: 128, 128, 128;
+    --color_9: 64, 64, 64;
+    --color_10: 0, 0, 0;
+    --color_11: 255, 255, 255;
+    --color_12: 213, 213, 213;
+    --color_13: 170, 170, 170;
+    --color_14: 128, 128, 128;
+    --color_15: 85, 85, 85;
+    --color_16: 227, 233, 234;
+    --color_17: 198, 210, 212;
+    --color_18: 170, 188, 191;
+    --color_19: 103, 132, 137;
+    --color_20: 52, 66, 69;
+    --color_21: 209, 209, 209;
+    --color_22: 163, 163, 163;
+    --color_23: 117, 117, 117;
+    --color_24: 71, 71, 71;
+    --color_25: 25, 25, 25;
+    --color_26: 190, 239, 241;
+    --color_27: 131, 223, 227;
+    --color_28: 98, 167, 170;
+    --color_29: 66, 112, 114;
+    --color_30: 33, 56, 57;
+    --color_31: 201, 253, 255;
+    --color_32: 131, 223, 227;
+    --color_33: 98, 167, 170;
+    --color_34: 66, 112, 114;
+    --color_35: 33, 56, 57;
+    --color_36: 255, 255, 255;
+    --color_37: 85, 85, 85;
+    --color_38: 213, 213, 213;
+    --color_39: 170, 170, 170;
+    --color_40: 128, 128, 128;
+    --color_41: 170, 188, 191;
+    --color_42: 98, 167, 170;
+    --color_43: 98, 167, 170;
+    --color_44: 198, 210, 212;
+    --color_45: 85, 85, 85;
+    --color_46: 85, 85, 85;
+    --color_47: 128, 128, 128;
+    --color_48: 170, 188, 191;
+    --color_49: 170, 188, 191;
+Show all properties (43 more)
+}
+:root {
+    --wst-button-color-fill-primary: rgb(var(--color_48));
+    --wst-button-color-border-primary: rgb(var(--color_49));
+    --wst-button-color-text-primary: rgb(var(--color_50));
+    --wst-button-color-fill-primary-hover: rgb(var(--color_51));
+    --wst-button-color-border-primary-hover: rgb(var(--color_52));
+    --wst-button-color-text-primary-hover: rgb(var(--color_53));
+    --wst-button-color-fill-primary-disabled: rgb(var(--color_54));
+    --wst-button-color-border-primary-disabled: rgb(var(--color_55));
+    --wst-button-color-text-primary-disabled: rgb(var(--color_56));
+    --wst-button-color-fill-secondary: rgb(var(--color_57));
+    --wst-button-color-border-secondary: rgb(var(--color_58));
+    --wst-button-color-text-secondary: rgb(var(--color_59));
+    --wst-button-color-fill-secondary-hover: rgb(var(--color_60));
+    --wst-button-color-border-secondary-hover: rgb(var(--color_61));
+    --wst-button-color-text-secondary-hover: rgb(var(--color_62));
+    --wst-button-color-fill-secondary-disabled: rgb(var(--color_63));
+    --wst-button-color-border-secondary-disabled: rgb(var(--color_64));
+    --wst-button-color-text-secondary-disabled: rgb(var(--color_65));
+    --wst-color-fill-base-1: rgb(var(--color_36));
+    --wst-color-fill-base-2: rgb(var(--color_37));
+    --wst-color-fill-base-shade-1: rgb(var(--color_38));
+    --wst-color-fill-base-shade-2: rgb(var(--color_39));
+    --wst-color-fill-base-shade-3: rgb(var(--color_40));
+    --wst-color-fill-accent-1: rgb(var(--color_41));
+    --wst-color-fill-accent-2: rgb(var(--color_42));
+    --wst-color-fill-accent-3: rgb(var(--color_43));
+    --wst-color-fill-accent-4: rgb(var(--color_44));
+    --wst-color-fill-background-primary: rgb(var(--color_11));
+    --wst-color-fill-background-secondary: rgb(var(--color_12));
+    --wst-color-text-primary: rgb(var(--color_15));
+    --wst-color-text-secondary: rgb(var(--color_14));
+    --wst-color-action: rgb(var(--color_18));
+    --wst-color-disabled: rgb(var(--color_39));
+    --wst-color-title: rgb(var(--color_45));
+    --wst-color-subtitle: rgb(var(--color_46));
+    --wst-color-line: rgb(var(--color_47));
+    --wst-font-style-h2: var(--font_2);
+    --wst-font-style-h3: var(--font_3);
+    --wst-font-style-h4: var(--font_4);
+    --wst-font-style-h5: var(--font_5);
+    --wst-font-style-h6: var(--font_6);
+    --wst-font-style-body-large: var(--font_7);
+    --wst-font-style-body-medium: var(--font_8);
+    --wst-font-style-body-small: var(--font_9);
+    --wst-font-style-body-x-small: var(--font_10);
+    --wst-color-custom-1: rgb(var(--color_13));
+    --wst-color-custom-2: rgb(var(--color_16));
+    --wst-color-custom-3: rgb(var(--color_17));
+    --wst-color-custom-4: rgb(var(--color_19));
+    --wst-color-custom-5: rgb(var(--color_20));
+Show all properties (15 more)
+}
+@supports (container-type:inline-size) {
+    :root {
+        --one-unit: 1cqw;
+    }
+}
+:root {
+    --one-unit: 1vw;
+    --section-max-width: 9999px;
+    --spx-stopper-max: 9999px;
+    --spx-stopper-min: 0px;
+    --browser-zoom: 1;
+}
