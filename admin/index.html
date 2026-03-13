@@ -945,10 +945,10 @@
 </div>
 
 <script>
-  // In dev, API runs on :3001. In production (same origin), use relative path.
+  // In dev, API runs on :3001. In production, point to Render.
   const API = window.location.port === '3000'
     ? 'http://localhost:3001/api/admin'
-    : '/api/admin';
+    : 'https://mappa-api-9w1v.onrender.com/api/admin';
   let TOKEN = '';
   let allRequests = [];
   let allClients = [];
