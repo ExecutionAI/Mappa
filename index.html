@@ -450,7 +450,7 @@
   <div
     class="hero-media-box"
     id="hero-media-box"
-    style="width:300px;height:400px;"
+    style="width:clamp(300px,85vw,500px);height:clamp(400px,60vh,600px);"
   >
     <img
       src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1280&q=80&auto=format&fit=crop"
@@ -464,8 +464,8 @@
     <div class="hero-title-line" id="hero-title-2">Mundo</div>
   </div>
 
-  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:8;display:flex;flex-direction:column;align-items:center;gap:4px;pointer-events:none;margin-top:100px;">
-    <p id="hero-date" style="font-size:18px;color:rgba(255,255,255,0.7);font-weight:300;letter-spacing:2px;text-transform:uppercase;">Tu próxima aventura</p>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:8;display:flex;flex-direction:column;align-items:center;gap:4px;pointer-events:none;margin-top:clamp(70px,12vh,100px);">
+    <p id="hero-date" style="font-size:clamp(12px,3.5vw,18px);color:rgba(255,255,255,0.7);font-weight:300;letter-spacing:clamp(1px,0.4vw,2px);text-transform:uppercase;white-space:nowrap;">Tu próxima aventura</p>
   </div>
 
   <div class="hero-scroll-hint" id="hero-scroll-hint">
@@ -531,7 +531,7 @@
       </div>
       <div>
         <p style="font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:16px;">Por qué MAPPA</p>
-        <h2 class="script" style="font-size:clamp(36px,5vw,52px);color:var(--slate);margin-bottom:24px;letter-spacing:-0.03em;">Viajes Diseñados a tu Medida</h2>
+        <h2 style="font-size:clamp(28px,4vw,44px);font-weight:300;color:var(--slate);margin-bottom:24px;letter-spacing:-0.5px;line-height:1.2;">Viajes Diseñados a tu Medida</h2>
         <p style="font-size:16px;line-height:1.7;color:#4a5568;margin-bottom:40px;">No somos una agencia de viajes convencional. Creamos experiencias únicas que van más allá del destino. Cada itinerario es una obra maestra personalizada, diseñada para que vivas momentos que recordarás por siempre.</p>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
           <div class="stat-card">
@@ -645,7 +645,7 @@
   <div style="max-width:1000px;margin:0 auto;">
     <div class="reveal" style="text-align:center;margin-bottom:56px;">
       <p style="font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--teal);font-weight:500;margin-bottom:12px;">Testimonios</p>
-      <h2 class="script" style="font-size:clamp(36px,6vw,52px);color:var(--slate);letter-spacing:-0.03em;">Lo que dicen nuestros viajeros</h2>
+      <h2 style="font-size:clamp(28px,5vw,44px);font-weight:300;color:var(--slate);letter-spacing:-0.5px;line-height:1.2;">Lo que dicen nuestros viajeros</h2>
     </div>
     <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;">
 
@@ -719,7 +719,7 @@
   <div class="cta-grain"></div>
   <div class="reveal" style="position:relative;z-index:2;text-align:center;max-width:700px;margin:0 auto;">
     <p style="font-size:12px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,0.5);font-weight:500;margin-bottom:16px;">Reserva ahora</p>
-    <h2 class="script" style="font-size:clamp(48px,8vw,80px);color:#fff;margin-bottom:16px;line-height:1.1;">Tu Aventura Comienza Aquí</h2>
+    <h2 style="font-size:clamp(40px,7vw,72px);font-weight:200;color:#fff;margin-bottom:16px;line-height:1.1;letter-spacing:-0.03em;">Tu Aventura Comienza Aquí</h2>
     <p style="font-size:clamp(14px,2vw,17px);color:rgba(255,255,255,0.7);margin-bottom:48px;line-height:1.7;font-weight:300;">Cuéntanos de tus sueños de viaje. En minutos diseñamos una experiencia completamente personalizada — solo para ti.</p>
     <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
       <a href="cotiza.html" class="btn-primary">
@@ -803,8 +803,8 @@
     const mobile = isMobile();
     const maxW = mobile ? 95 : 95;
     const maxH = mobile ? 85 : 85;
-    const startW = mobile ? 260 : 300;
-    const startH = mobile ? 340 : 400;
+    const startW = mobile ? 300 : 300;
+    const startH = mobile ? 420 : 400;
     const vpW = window.innerWidth * maxW / 100;
     const vpH = window.innerHeight * maxH / 100;
 
