@@ -192,6 +192,13 @@ async function appendToSheet(data, aiResponse) {
   });
 }
 
+// ─── Injection Detection ───────────────────────────────────────────────────────
+function detectsInjection(data) {
+  const suspicious = /ignore\s+(all|everything|previous|above)|system\s*prompt|jailbreak|forget\s+(all|everything)|pretend|roleplay|as an ai|instruccion|override|act as/i;
+  return [data.nombre, data.destinos, data.estilo, data.imprescindibles, data.evitar, data.especial]
+    .some(v => suspicious.test(String(v || '')));
+}
+
 // ─── Route ─────────────────────────────────────────────────────────────────────
 app.post('/api/submit', limiter, async (req, res) => {
   try {
@@ -203,6 +210,9 @@ app.post('/api/submit', limiter, async (req, res) => {
     }
     if (!validateEmail(b.email)) {
       return res.status(400).json({ error: 'Correo electrónico inválido.' });
+    }
+    if (detectsInjection(b)) {
+      return res.status(400).json({ error: 'Contenido no permitido en el formulario.' });
     }
 
     // Generate AI preview
