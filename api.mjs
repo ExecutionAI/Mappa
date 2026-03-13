@@ -5,7 +5,8 @@ import rateLimit from 'express-rate-limit';
 import OpenAI from 'openai';
 import { Resend } from 'resend';
 import { google } from 'googleapis';
-import puppeteer from 'puppeteer';
+import puppeteer from 'puppeteer-core';
+import chromium from '@sparticuz/chromium';
 import { buildPdfHtml, buildRoutePdfHtml } from './pdf-template.mjs';
 import { createClient } from '@supabase/supabase-js';
 
@@ -117,9 +118,12 @@ Escribe la vista previa personalizada de viaje ahora.`;
 // ─── PDF Generation ─────────────────────────────────────────────────────────
 async function generatePdf(nombre, travelPreview) {
   const html = buildPdfHtml(nombre, travelPreview);
+  const isLocal = !process.env.RENDER;
   const browser = await puppeteer.launch({
-    headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    args: chromium.args,
+    defaultViewport: chromium.defaultViewport,
+    executablePath: isLocal ? undefined : await chromium.executablePath(),
+    headless: chromium.headless,
   });
   try {
     const page = await browser.newPage();
@@ -728,7 +732,13 @@ app.get('/api/admin/route-suggestions/:id/pdf', requireAdmin, async (req, res) =
     const selectedOpt = (suggestion.options || []).find(o => o.option === suggestion.selected_option);
     const html = buildRoutePdfHtml(clientName, suggestion.detail, selectedOpt);
 
-    const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+    const isLocal = !process.env.RENDER;
+    const browser = await puppeteer.launch({
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      executablePath: isLocal ? undefined : await chromium.executablePath(),
+      headless: chromium.headless,
+    });
     let pdfBuffer;
     try {
       const page = await browser.newPage();
