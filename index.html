@@ -399,7 +399,7 @@
         background: rgba(236,237,231,0.97);
         backdrop-filter: blur(16px);
         padding: 16px 0;
-        transform: translateY(-120%);
+        transform: translateY(calc(-100% - 68px));
         transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
         box-shadow: 0 8px 24px rgba(0,0,0,0.1);
       }
@@ -413,6 +413,16 @@
         display: block; text-align: center;
       }
       .carousel-card { width: 280px; height: 350px; }
+      .hero-media-box {
+        width: clamp(260px, 78vw, 420px) !important;
+        height: clamp(320px, 52vh, 460px) !important;
+      }
+      .hero-title-line {
+        font-size: clamp(36px, 9vw, 56px) !important;
+      }
+      .hero-subtitle {
+        margin-top: clamp(50px, 9vh, 75px) !important;
+      }
     }
   </style>
 </head>
@@ -422,7 +432,7 @@
 <nav class="site-nav" id="site-nav">
   <div style="max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:68px;">
     <a href="index.html" style="display:flex;align-items:center;">
-      <img src="brand_assets/logo-inverse.svg" alt="MAPPA Travels" style="height:56px;width:auto;" id="nav-logo" />
+      <img src="brand_assets/logo-inverse.svg" alt="MAPPA Travels" style="height:60px;width:auto;" id="nav-logo" />
     </a>
     <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -430,7 +440,7 @@
     <div class="nav-links" id="nav-links">
       <a href="consultoria.html" class="nav-link">Servicios</a>
       <a href="nosotros.html" class="nav-link">Sobre Nosotros</a>
-      <a href="cotiza.html" class="nav-cta">Cotiza tu Viaje</a>
+      <a href="cotiza.html" class="nav-cta">Cotiza</a>
     </div>
   </div>
 </nav>
@@ -464,7 +474,7 @@
     <div class="hero-title-line" id="hero-title-2">Mundo</div>
   </div>
 
-  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:8;display:flex;flex-direction:column;align-items:center;gap:4px;pointer-events:none;margin-top:clamp(70px,12vh,100px);">
+  <div class="hero-subtitle" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:8;display:flex;flex-direction:column;align-items:center;gap:4px;pointer-events:none;margin-top:clamp(70px,12vh,100px);">
     <p id="hero-date" style="font-size:clamp(12px,3.5vw,18px);color:rgba(255,255,255,0.7);font-weight:300;letter-spacing:clamp(1px,0.4vw,2px);text-transform:uppercase;white-space:nowrap;">Tu próxima aventura</p>
   </div>
 
